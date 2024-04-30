@@ -10,4 +10,12 @@ public class AgifyService {
     public AgifyService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("https://api.agify.io").build();
     }
+
+    public AgifyResponse getAgifyResponse(String fullName) {
+        return webClient.get()
+                .uri("?name=" + fullName)
+                .retrieve()
+                .bodyToMono(AgifyResponse.class)
+                .block();
+    }
 }

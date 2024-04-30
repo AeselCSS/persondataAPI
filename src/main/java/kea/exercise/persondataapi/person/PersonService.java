@@ -56,7 +56,7 @@ public class PersonService {
                 genderizeResponse.probability(),
                 agifyResponse.age(),
                 nationalizeResponse.country().getFirst().country_id(),
-                nationalizeResponse.country().getFirst().probability()
+                Double.parseDouble(String.format("%.2f", nationalizeResponse.country().getFirst().probability()))
         );
     }
 

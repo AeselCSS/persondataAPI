@@ -1,6 +1,5 @@
 package kea.exercise.persondataapi.nationalize;
 
-import kea.exercise.persondataapi.genderize.GenderizeResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 

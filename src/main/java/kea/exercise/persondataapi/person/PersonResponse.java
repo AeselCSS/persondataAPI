@@ -8,7 +8,6 @@ public record PersonResponse(
         String gender,
         double genderProbability,
         int age,
-        double ageProbability,
         String country,
         double countryProbability
 ) {

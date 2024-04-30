@@ -25,4 +25,9 @@ public class PersonController {
 
         return ResponseEntity.ok(personService.checkPersonAgeGenderAndNationality(person));
     }
+
+    @GetMapping("/persons/cache")
+    public ResponseEntity<List<PersonResponse>> getCache() {
+        return ResponseEntity.ok(personService.getCache());
+    }
 }

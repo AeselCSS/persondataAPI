@@ -5,6 +5,7 @@ import kea.exercise.persondataapi.person.PersonResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -28,5 +29,9 @@ public class CacheComponent {
 
     public void put(Person key, PersonResponse value) {
         cache.put(key, value);
+    }
+
+    public List<PersonResponse> getAll() {
+        return List.copyOf(cache.values());
     }
 }

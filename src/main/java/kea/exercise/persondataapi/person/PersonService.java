@@ -9,6 +9,8 @@ import kea.exercise.persondataapi.nationalize.NationalizeResponse;
 import kea.exercise.persondataapi.nationalize.NationalizeService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PersonService {
 
@@ -38,7 +40,10 @@ public class PersonService {
         GenderizeResponse genderizeResponse = genderizeService.getGenderizeResponse(person.fullName());
         NationalizeResponse nationalizeResponse = nationalizeService.getNationalizeResponse(person.fullName());
 
-        return toPersonResponse(person, agifyResponse, genderizeResponse, nationalizeResponse);
+        PersonResponse personResponse = toPersonResponse(person, agifyResponse, genderizeResponse, nationalizeResponse);
+        cacheComponent.put(person, personResponse);
+
+        return personResponse;
     }
 
     private PersonResponse toPersonResponse(Person person, AgifyResponse agifyResponse, GenderizeResponse genderizeResponse, NationalizeResponse nationalizeResponse) {
@@ -53,5 +58,9 @@ public class PersonService {
                 nationalizeResponse.country().getFirst().country_id(),
                 nationalizeResponse.country().getFirst().probability()
         );
+    }
+
+    public List<PersonResponse> getCache() {
+        return cacheComponent.getAll();
     }
 }
